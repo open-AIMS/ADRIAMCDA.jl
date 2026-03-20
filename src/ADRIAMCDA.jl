@@ -50,4 +50,6 @@ function rank_scores(current_conditions::DataFrame, prefs::Dict; method=cocoso)
     return rank_scores(Matrix(current_conditions), prefs; method=method)
 end
 
+export rank_locations, rank_scores
+
 end
