@@ -1,7 +1,20 @@
 name = "ADRIAMCDA"
 uuid = "dfa1b6a5-c012-494d-82ea-9eaaae5ebba1"
+version = "0.1.0"
 authors = ["Takuya Iwanaga"]
-version = "0.1"
 
 [deps]
+DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
 JMcDM = "358108f5-d052-4d0a-8344-d5384e00c0e5"
+
+[compat]
+DataFrames = "1.8.1"
+Test = "1"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
+JMcDM = "358108f5-d052-4d0a-8344-d5384e00c0e5"
+
+[targets]
+test = ["Test", "DataFrames", "JMcDM"]
