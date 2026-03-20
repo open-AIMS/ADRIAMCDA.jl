@@ -2,35 +2,6 @@ module ADRIAMCDA
 
 using JMcDM
 
-# tmp = Dict(
-#     :names => ["heat", "waves", "cover", "in_conn", "out_conn"],
-#     :weights => [1.0, 0.5, 0.8, 0.5, 0.5],
-#     :directions => [minimum, minimum, minimum, maximum, maximum]
-# )
-
-# dummy = [
-#     1 1 1 1 1;
-#     2 2 2 2 2;
-#     2 2 2 2 2;
-#     2 2 2 2 2;
-#     2 2 2 2 2;
-#     2 2 2 2 2;
-#     2 2 2 2 2;
-#     2 2 2 2 2;
-#     2 2 2 2 2;
-#     2 2 2 2 2
-# ]
-
-# dummy = hcat(
-#     collect.([
-#         1:10,
-#         1:10,
-#         [4.0, 500.0, 6.0, 10.0, 50.0, 100.0, 100.0, 100.0, 100.0, 100.0],
-#         [1000.0, 0.1, 6.0, 10.0, 50.0, 100.0, 100.0, 100.0, 100.0, 100.0],
-#         [1000.0, 0.9, 6.0, 10.0, 50.0, 100.0, 100.0, 100.0, 100.0, 100.0]
-#     ])...
-# )
-
 """
     rank_locations(current_conditions::Matrix, prefs::Dict; method=cocoso)
     rank_locations(current_conditions::DataFrame, prefs::Dict; method=cocoso)
