@@ -1,10 +1,19 @@
 # ADRIAMCDA
 
-Light-weight MCDA component for the ADRIA decision support framework.
+Light-weight and cut-down MCDA component wrapping the [JMcDM package](https://github.com/jbytecode/JMcDM)
+for the ADRIA decision support framework.
+
+## Installation
+
+From the Pkg REPL (press `]` to enter):
+
+```
+pkg> add https://github.com/open-AIMS/ADRIAMCDA.jl
+```
 
 ## Usage
 
-The default MCDA method adopted is CoCoSo
+The default MCDA method adopted (for now) is CoCoSo.
 
 Yazdani, M., Zarate, P., Kazimieras Zavadskas, E. and Turskis, Z. (2019), "A combined compromise solution (CoCoSo) method for multi-criteria decision-making problems", Management Decision, Vol. 57 No. 9, pp. 2501-2519. https://doi.org/10.1108/MD-05-2017-0458
 
@@ -63,7 +72,7 @@ Rankings are returned in "competition" order: a value of 1 indicates "first plac
 "most desirable".
 
 ```julia
-rankings = ADRIAMCDA.rank_locations(dummy_criteria, prefs)
+rankings = rank_locations(dummy_criteria, prefs)
 # 10-element Vector{Int64}:
 #   1
 #   9
@@ -75,4 +84,21 @@ rankings = ADRIAMCDA.rank_locations(dummy_criteria, prefs)
 #   7
 #   8
 #  10
+```
+
+If scores are desired instead:
+
+```julia
+rank_scores(dummy_criteria, prefs)
+# 10-element Vector{Float64}:
+#  3.7240178190888944
+#  1.4775280469799914
+#  2.523534137686779
+#  2.431686854852975
+#  2.3913406512090942
+#  2.2886988326788242
+#  2.1549365172359267
+#  2.0098602461381363
+#  1.840379445892517
+#  1.2937847886739582
 ```
