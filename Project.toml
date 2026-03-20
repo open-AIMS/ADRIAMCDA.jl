@@ -1,0 +1,7 @@
+name = "ADRIAMCDA"
+uuid = "dfa1b6a5-c012-494d-82ea-9eaaae5ebba1"
+authors = ["Takuya Iwanaga"]
+version = "0.1"
+
+[deps]
+JMcDM = "358108f5-d052-4d0a-8344-d5384e00c0e5"
