@@ -13,6 +13,9 @@ Rankings are returned in "competition" order: Rank 1 indicates "first place".
 # Arguments
 - `rank_locations` : Criteria values for each location (locations × criteria)
 - `prefs` : Preferences indicating the names of criteria, weights, and directionality.
+
+# Returns
+Vector of ranks corresponding to each location in their provided order.
 """
 function rank_locations(current_conditions::Matrix, prefs::Dict; method=cocoso)
     res = method(current_conditions, prefs[:weights], prefs[:directions])
@@ -41,6 +44,13 @@ end
     rank_scores(current_conditions::DataFrame, prefs::Dict; method=cocoso)
 
 Get ranking scores for the locations.
+
+# Arguments
+- `rank_locations` : Criteria values for each location (locations × criteria)
+- `prefs` : Preferences indicating the names of criteria, weights, and directionality.
+
+# Returns
+Vector of rank scores corresponding to each location in their provided order.
 """
 function rank_scores(current_conditions::Matrix, prefs::Dict; method=cocoso)
     res = method(current_conditions, prefs[:weights], prefs[:directions])
