@@ -60,6 +60,39 @@ function rank_scores(current_conditions::DataFrame, prefs::Dict; method=cocoso)
     return rank_scores(Matrix(current_conditions), prefs; method=method)
 end
 
+"""
+    top_reef_indices(prefs, n; kwargs...) -> Vector{Int}
+
+Return the indices of the top `n` reefs ranked by MCDA criteria.
+
+# Arguments
+- `prefs`: preference dictionary with `:names`, `:weights`, and `:directions` entries
+- `n`: number of top-ranked reefs to select
+- `kwargs`: one keyword argument per criterion named in `prefs[:names]`, each a `Vector{Float64}`
+
+Criteria are assembled into a matrix in `prefs[:names]` order and passed to
+`rank_locations`. Errors if any kwarg name is absent from `prefs[:names]`, or if a
+name in `prefs[:names]` has no corresponding kwarg.
+"""
+function top_reef_indices(prefs::Dict, n::Int; kwargs...)
+    names = prefs[:names]
+
+    for key in keys(kwargs)
+        String(key) ∈ names || error("Argument ':$key' not found in prefs[:names]: $names")
+    end
+
+    columns = map(names) do name
+        key = Symbol(name)
+        haskey(kwargs, key) || error("No argument provided for criterion '$name' (expected in prefs[:names])")
+        kwargs[key]
+    end
+
+    criteria = hcat(columns...)
+    rankings = rank_locations(criteria, prefs)
+    return findall(r -> r <= n, rankings)
+end
+
 export rank_locations, rank_scores
+export top_reef_indices
 
 end
