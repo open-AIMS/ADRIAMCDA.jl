@@ -102,3 +102,36 @@ rank_scores(dummy_criteria, prefs)
 #  1.840379445892517
 #  1.2937847886739582
 ```
+
+### Selecting top-ranked locations
+
+`top_reef_indices` is a convenience wrapper that returns the indices of the `n`
+best-ranked locations. Criteria are passed as keyword arguments whose names must match
+`prefs[:names]` exactly — the function errors on any mismatch.
+
+```julia
+prefs = Dict(
+    :names => ["heat", "cyclone_loss", "cover"],
+    :weights => [1.0, 0.5, 0.8],
+    :directions => [minimum, minimum, minimum]
+)
+
+n_reefs = 10
+heat        = rand(n_reefs)
+cyclone_loss = rand(n_reefs)
+cover       = rand(n_reefs)
+
+# Returns indices of the top 3 reefs
+top_idx = top_reef_indices(prefs, 3;
+    heat=heat,
+    cyclone_loss=cyclone_loss,
+    cover=cover
+)
+# e.g. [1, 4, 7]
+
+# Use indices to select reef IDs or any other per-reef data
+top_reef_ids = reef_ids[top_idx]
+```
+
+The keyword argument names must correspond 1-to-1 with `prefs[:names]`. Passing an
+unrecognised name or omitting a required one raises an informative error at call time.
